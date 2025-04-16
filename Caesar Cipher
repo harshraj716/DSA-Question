@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string caesarCipher(string s, int k) {
+    string result = "";
+    k = k % 26; // Reduce k to avoid unnecessary full rotations
+    for (char c : s) {
+        if (isalpha(c)) {  // If the character is a letter
+            char base = islower(c) ? 'a' : 'A'; // Determine if lowercase or uppercase
+            c = (c - base + k) % 26 + base; // Apply the rotation and wrap around
+        }
+        result += c; // Append the character to the result
+    }
+    return result;
+}
+
+int main() {
+    int n, k;
+    string s;
+    
+    cin >> n;  // Read the length of the string (not used directly)
+    cin >> s;  // Read the string to encrypt
+    cin >> k;  // Read the shift value
+    
+    cout << caesarCipher(s, k) << endl;  // Output the encrypted string
+    return 0;
+}
