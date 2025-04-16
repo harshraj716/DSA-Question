@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int countingValleys(int steps, string path) {
+    int altitude = 0;
+    int valleys = 0;
+
+    for (char step : path) {
+        // Step up
+        if (step == 'U') {
+            altitude++;
+        }
+        // Step down
+        else if (step == 'D') {
+            altitude--;
+        }
+
+        // Check if we just came back to sea level after a step up from below sea level
+        if (altitude == 0 && step == 'U') {
+            valleys++;
+        }
+    }
+
+    return valleys;
+}
+
+int main() {
+    int steps;
+    string path;
+
+    // Read input
+    cin >> steps;
+    cin >> path;
+
+    // Get the number of valleys
+    int result = countingValleys(steps, path);
+
+    // Output the result
+    cout << result << endl;
+
+    return 0;
+}
