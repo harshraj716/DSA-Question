@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+long marcsCakewalk(vector<int> calorie) {
+    sort(calorie.rbegin(), calorie.rend()); // Sort in descending order
+
+    long total = 0;
+    for (int i = 0; i < calorie.size(); i++) {
+        total += (long)pow(2, i) * calorie[i];
+    }
+
+    return total;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> calorie(n);
+    for (int i = 0; i < n; i++) {
+        cin >> calorie[i];
+    }
+
+    cout << marcsCakewalk(calorie) << endl;
+    return 0;
+}
