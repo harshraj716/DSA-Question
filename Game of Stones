@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+string gameOfStones(int n) {
+    if (n == 1) return "Second";
+
+    vector<bool> moves(n + 1, false);
+
+    for (int i = 1; i <= n; i++) {
+        bool canWin = false;
+
+        if (i >= 2 && !moves[i - 2]) canWin = true;
+        if (i >= 3 && !moves[i - 3]) canWin = true;
+        if (i >= 5 && !moves[i - 5]) canWin = true;
+
+        moves[i] = canWin;
+    }
+
+    return moves[n] ? "First" : "Second";
+}
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n;
+        cin >> n;
+        cout << gameOfStones(n) << endl;
+    }
+
+    return 0;
+}
