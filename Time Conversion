@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string timeConversion(string s) {
+    // Extract the AM/PM part from the string
+    string period = s.substr(8, 2);
+    
+    // Extract the hour, minute, and second parts
+    int hour = stoi(s.substr(0, 2));
+    string minute = s.substr(3, 2);
+    string second = s.substr(6, 2);
+    
+    // Convert the time based on AM/PM
+    if (period == "AM") {
+        if (hour == 12) {
+            hour = 0; // 12 AM is 00 in 24-hour time
+        }
+    } else { // PM case
+        if (hour != 12) {
+            hour += 12; // Convert PM times to 24-hour format by adding 12
+        }
+    }
+    
+    // Format hour with two digits
+    string hourStr = (hour < 10) ? "0" + to_string(hour) : to_string(hour);
+    
+    // Return the time in 24-hour format
+    return hourStr + ":" + minute + ":" + second;
+}
+
+int main() {
+    string s;
+    cin >> s; // Read input time in 12-hour format
+    cout << timeConversion(s) << endl; // Output the converted time in 24-hour format
+    return 0;
+}
