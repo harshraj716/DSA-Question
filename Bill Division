@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+#include <numeric>
+
+using namespace std;
+
+void bonAppetit(vector<int>& bill, int k, int b) {
+    // Calculate the total cost of items excluding the item Anna didn't eat
+    int total_cost = accumulate(bill.begin(), bill.end(), 0);
+    int shared_cost = total_cost - bill[k];  // Exclude the item Anna didn't eat
+    
+    // Calculate Anna's fair share
+    int fair_share = shared_cost / 2;
+    
+    // Check if the amount Brian charged Anna is correct
+    if (b == fair_share) {
+        cout << "Bon Appetit" << endl;
+    } else {
+        cout << (b - fair_share) << endl;  // Print how much Brian owes Anna
+    }
+}
+
+int main() {
+    int n, k;
+    cin >> n >> k;  // Number of items and the index of the item Anna didn't eat
+    
+    vector<int> bill(n);
+    for (int i = 0; i < n; i++) {
+        cin >> bill[i];  // Prices of the items
+    }
+    
+    int b;
+    cin >> b;  // Amount Brian charged Anna
+    
+    bonAppetit(bill, k, b);  // Call the function to check the bill
+    
+    return 0;
+}
