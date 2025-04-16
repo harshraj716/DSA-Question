@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int hurdleRace(int k, vector<int>& height) {
+    // Find the maximum height of the hurdles
+    int maxHurdle = *max_element(height.begin(), height.end());
+
+    // Calculate the number of doses required
+    int doses = max(0, maxHurdle - k); // If the character can already jump over all hurdles, doses will be 0
+
+    return doses;
+}
+
+int main() {
+    int n, k;
+    cin >> n >> k; // Input number of hurdles and the max height the character can jump naturally
+    vector<int> height(n);
+    
+    for (int i = 0; i < n; i++) {
+        cin >> height[i]; // Input the heights of the hurdles
+    }
+
+    // Output the result (number of doses)
+    cout << hurdleRace(k, height) << endl;
+
+    return 0;
+}
