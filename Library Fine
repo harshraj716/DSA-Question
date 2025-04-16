@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+int libraryFine(int d1, int m1, int y1, int d2, int m2, int y2) {
+    // If the return year is before or the same as the due year
+    if (y1 < y2) {
+        return 0; // No fine if returned on or before the due date
+    }
+    
+    // If the return year is the same as the due year
+    if (y1 == y2) {
+        // If the return month is before or the same as the due month
+        if (m1 < m2) {
+            return 0; // No fine if returned on or before the due date
+        }
+        
+        // If the return month is the same as the due month
+        if (m1 == m2) {
+            // If the return day is before or the same as the due day
+            if (d1 <= d2) {
+                return 0; // No fine if returned on or before the due date
+            }
+            // Fine for returning after the due day within the same month
+            return 15 * (d1 - d2);
+        }
+        
+        // Fine for returning after the due month within the same year
+        return 500 * (m1 - m2);
+    }
+    
+    // Fixed fine if returned after the due year
+    return 10000;
+}
+
+int main() {
+    int d1, m1, y1; // Returned date (day, month, year)
+    int d2, m2, y2; // Due date (day, month, year)
+    
+    // Reading input for returned date and due date
+    cin >> d1 >> m1 >> y1;
+    cin >> d2 >> m2 >> y2;
+    
+    // Calculate and output the fine
+    cout << libraryFine(d1, m1, y1, d2, m2, y2) << endl;
+    
+    return 0;
+}
