@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int jumpingOnClouds(const vector<int>& c, int k) {
+    int energy = 100;  // Start with 100 energy
+    int n = c.size();
+    int current = 0;   // Start at cloud 0
+    
+    // Loop until we return to the starting cloud
+    do {
+        current = (current + k) % n;  // Calculate the next cloud index (circular array)
+        energy--;  // Every jump costs 1 energy
+        if (c[current] == 1) {  // If it's a thunderhead cloud
+            energy -= 2;  // Additional energy cost for thunderhead
+        }
+    } while (current != 0);  // Stop when we land back on the starting cloud
+    
+    return energy;
+}
+
+int main() {
+    int n, k;
+    cin >> n >> k;  // Read the number of clouds and jump length
+    vector<int> c(n);
+    
+    for (int i = 0; i < n; i++) {
+        cin >> c[i];  // Read the cloud types
+    }
+    
+    cout << jumpingOnClouds(c, k) << endl;  // Output the remaining energy
+    
+    return 0;
+}
