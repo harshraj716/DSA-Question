@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int marsExploration(string s) {
+    int changed = 0;
+    string expected = "SOS";
+
+    for (size_t i = 0; i < s.length(); i++) {
+        if (s[i] != expected[i % 3]) {
+            changed++;
+        }
+    }
+
+    return changed;
+}
+
+int main() {
+    string s;
+    cin >> s;
+
+    cout << marsExploration(s) << endl;
+
+    return 0;
+}
