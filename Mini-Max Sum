@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void miniMaxSum(vector<int>& arr) {
+    sort(arr.begin(), arr.end()); // Sort the array
+    
+    // Sum of all elements
+    long long totalSum = 0;
+    for (int i = 0; i < arr.size(); ++i) {
+        totalSum += arr[i];
+    }
+    
+    // Minimum sum (exclude largest element)
+    long long minSum = totalSum - arr[4];
+    
+    // Maximum sum (exclude smallest element)
+    long long maxSum = totalSum - arr[0];
+    
+    cout << minSum << " " << maxSum << endl;
+}
+
+int main() {
+    vector<int> arr(5);  // Declare a vector to store the 5 integers
+    for (int i = 0; i < 5; ++i) {
+        cin >> arr[i];  // Read input for the array
+    }
+
+    miniMaxSum(arr);  // Call the function to compute and print the result
+
+    return 0;
+}
