@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int towerBreakers(int n, int m) {
+    // If m is 1, Player 1 has no move, Player 2 wins.
+    if (m == 1) {
+        return 2;
+    }
+    // If n is odd, Player 1 will win, if n is even, Player 2 will win.
+    return (n % 2 == 1) ? 1 : 2;
+}
+
+int main() {
+    int t;
+    cin >> t; // Read the number of test cases
+    
+    while (t--) {
+        int n, m;
+        cin >> n >> m; // Read the values of n and m
+        cout << towerBreakers(n, m) << endl; // Output the winner for each test case
+    }
+    
+    return 0;
+}
