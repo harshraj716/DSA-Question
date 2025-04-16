@@ -1,0 +1,23 @@
+The previous challenges covered Insertion Sort, which is a simple and intuitive sorting algorithm with a running time of . In these next few challenges, we're covering a divide-and-conquer algorithm called Quicksort (also known as Partition Sort). This challenge is a modified version of the algorithm that only addresses partitioning. It is implemented as follows:
+
+codee
+
+vector<int> quickSort(vector<int> arr) {
+    int pivot = arr[0];  // Pivot element is the first element
+    vector<int> left, right;
+
+    // Traverse through the rest of the array (starting from index 1)
+    for (int i = 1; i < arr.size(); i++) {
+        if (arr[i] < pivot) {
+            left.push_back(arr[i]);  // Element less than pivot
+        } else {
+            right.push_back(arr[i]);  // Element greater than pivot
+        }
+    }
+
+    // Combine the left array, pivot, and right array
+    left.push_back(pivot);  // Add pivot at its correct position
+    left.insert(left.end(), right.begin(), right.end());  // Add right array
+
+    return left;
+}
