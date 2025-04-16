@@ -1,0 +1,42 @@
+#include <iostream>
+#include <stack>
+#include <string>
+
+using namespace std;
+
+string superReducedString(string s) {
+    stack<char> stk;
+
+    // Process each character in the string
+    for (char c : s) {
+        // If the stack is not empty and the top element is the same as current character
+        if (!stk.empty() && stk.top() == c) {
+            stk.pop();  // Remove the top element (i.e., remove the pair)
+        } else {
+            stk.push(c);  // Otherwise, push the current character onto the stack
+        }
+    }
+
+    // If the stack is empty, return "Empty String", otherwise return the remaining string
+    if (stk.empty()) {
+        return "Empty String";
+    }
+
+    // Build the result string from the stack
+    string result = "";
+    while (!stk.empty()) {
+        result = stk.top() + result;  // Add each character to the front of the result
+        stk.pop();
+    }
+
+    return result;
+}
+
+int main() {
+    string s;
+    cin >> s;
+    
+    cout << superReducedString(s) << endl;
+
+    return 0;
+}
