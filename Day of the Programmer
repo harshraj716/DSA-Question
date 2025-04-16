@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to determine if a year is a leap year in the Julian calendar
+bool isJulianLeapYear(int year) {
+    return year % 4 == 0;
+}
+
+// Function to determine if a year is a leap year in the Gregorian calendar
+bool isGregorianLeapYear(int year) {
+    return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
+}
+
+// Function to calculate the 256th day of the year
+string dayOfProgrammer(int year) {
+    if (year == 1918) {
+        // Special case for the year 1918 due to transition
+        return "26.09.1918";
+    }
+
+    bool isLeap = false;
+    
+    // Determine if the year is a leap year based on the calendar system
+    if (year < 1918) {
+        // Julian calendar before 1918
+        isLeap = isJulianLeapYear(year);
+    } else {
+        // Gregorian calendar after 1918
+        isLeap = isGregorianLeapYear(year);
+    }
+
+    // The 256th day corresponds to September 12 for leap years, 13 for non-leap years
+    int day = isLeap ? 12 : 13;
+
+    // Return the formatted date
+    return to_string(day) + ".09." + to_string(year);
+}
+
+int main() {
+    int year;
+    cin >> year;  // Read the year from input
+    cout << dayOfProgrammer(year) << endl;  // Print the 256th day of the year
+    return 0;
+}
+
